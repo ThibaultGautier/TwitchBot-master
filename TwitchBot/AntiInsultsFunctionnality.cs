@@ -14,7 +14,7 @@ namespace TwitchBot
             messageParser.FillInsultsFromFile();
             messageParser.FillLinksFromFile();
             InputInfos userToTimeOutInfos = listInfos[listInfos.Count - 1];
-            if ((messageParser.CheckForInsult(message)==true) || (messageParser.CheckForLink(message)==true))
+            if ((messageParser.CheckForInsult(message)) || (messageParser.CheckForLink(message)))
             {
                 bot.TimeOutUser(userToTimeOutInfos.UserName);
             }

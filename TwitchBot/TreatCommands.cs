@@ -7,23 +7,20 @@ using System.Threading.Tasks;
 
 namespace TwitchBot
 {
-
-    /**
-     * Classe chargée de la bonne gestion des commandes admin et utilisateur
-     * */
     class TreatCommands
     {
         private static VoteFunctionality vote;
         private static Dictionary<string, int> listePropositions;
         private static bool startVote = false;
 
-
         private static bool IsCommand(string message)
         {
             if (message.StartsWith("!"))
-               return true;
-            else
-               return false;
+            {
+                Console.WriteLine("C'est une commande");
+                return true;
+            }
+            else { return false; }
         }
 
         private static string AssignMessage(string message)
@@ -51,7 +48,8 @@ namespace TwitchBot
         private static bool IsVote(string message, TwitchBot bot)
         {
             listePropositions = vote.getPropositions();
-            if (listePropositions.Keys.Contains(message)){
+            if (listePropositions.Keys.Contains(message))
+            {
                 bot.SendAdminMessage("added proposition");
                 vote.setValProposition(message, bot);
                 return true;
@@ -59,12 +57,10 @@ namespace TwitchBot
             return false;
         }
 
-
         public static void TreatCommand(string message, TwitchBot bot)
         {
             if (IsCommand(message))
             {
-                //Cette condition servira à différencier les votes et les commandes, les deux commençant par '!'
                 if (startVote)
                 {
                     IsVote(message, bot);
@@ -72,11 +68,6 @@ namespace TwitchBot
 
                 string commande = AssignMessage(message);
 
-                /**
-                 * /!\ Méthodes importantes : 
-                 *  - Op() : Permet de passer une utilisateur modérateur sur une chaîne donnée
-                 *  - Deop() : Supprime les droits de modération à un utilisateur sur une chaîne donnée
-                 * */
                 switch (commande)
                 {
                     case "modo":
@@ -95,8 +86,6 @@ namespace TwitchBot
 
                     case "vote":
                         startVote = true;
-                        Console.WriteLine("La tombolla de Tharsouille");
-                        Console.WriteLine("propositions : " + message.Remove(0, 6));
                         vote = new VoteFunctionality();
                         vote.StartVote(message.Remove(0, 6), bot);
                         break;
@@ -106,7 +95,6 @@ namespace TwitchBot
                         break;
 
                     case "Unknown":
-                        bot.SendChanMessage("Commande Inconnue");
                         break;
                 }
             }

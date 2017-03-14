@@ -106,8 +106,8 @@ namespace TwitchBot
 
         public void TimeOutUser(string nick)
         {
-            //irc.SendMessage(SendType.Action, channel, "tententive de timeout de "+nick);
-            irc.SendMessage(SendType.Action, channel, "/timeout " + nick + " 200");
+            irc.SendMessage(SendType.Action, channel, "tententive de timeout de "+nick);
+            irc.SendMessage(SendType.Message, channel, "/timeout " + nick + " 200");
         }
 
         public void SendAdminMessage(string messageVote)
