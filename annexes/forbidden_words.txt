@@ -1,0 +1,13 @@
+forbid=merde
+forbid=encule
+forbid=salaud
+forbid=fdp
+forbid=pute
+link=http://
+link=http
+link=www.
+link=www
+link=bit.ly
+link=.ly
+
+
