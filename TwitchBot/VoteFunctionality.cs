@@ -9,7 +9,6 @@ namespace TwitchBot
     /**
      * Classe gérant le démarrage, l'évolution et la clôture d'un vote.
      * */
-
     class VoteFunctionality
     {
         private string propositionAll = "";
